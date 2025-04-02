@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luanalyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Bem-Vindo Ao Luanalyzer</h1>
+    </header>
+    <div class="main">
+        <form action="/" method="post">
+        <input type="text" id="url" name="url" placeholder="Cole seu link aqui" required>
+        <button type="submit">Enviar</button>
+    </form>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+header{
+    h1{
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+body{
+    background-color: floralwhite;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    input{
+        width: 30%;
+    }
+    button{
+        margin-top: 20px;
+        padding: 5px;
+        width: 80px;
+    }
+}
