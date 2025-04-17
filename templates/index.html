@@ -7,13 +7,27 @@
 </head>
 <body>
     <header>
-        <h1>Bem-Vindo Ao Luanalyzer</h1>
+        <h1>Bem-Vindo Ao LuAnalyzer</h1>
     </header>
-    <div class="main">
+
+        <!-- envio do formulario -->
+        <div class="input">
         <form action="/" method="post">
-        <input type="text" id="url" name="url" placeholder="Cole seu link aqui" required>
-        <button type="submit">Enviar</button>
-    </form>
+        <input type="text" id="link_video" name="url" class="link" placeholder="Cole seu link aqui" required>
+        <button type="submit" class="btn" >Enviar</button>
+        </form>
+        </div>
+    <div class="caixa-resposta">
+        <h2>Titulo do video</h2>
+        <p id="respostaVideo">
+            {% if resposta %}
+                {{ resposta }}
+            {% else %}
+                A transcrição ou resumo do vídeo será exibido aqui.
+            {% endif %}
+        </p>
     </div>
+
+
     </body>
 </html>
