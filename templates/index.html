@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Splash&display=swap');</style>
     <meta charset="UTF-8">
     <title>Luanalyzer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -13,19 +14,24 @@
         <!-- envio do formulario -->
         <div class="input">
         <form action="/" method="post">
-        <input type="text" id="link_video" name="url" class="link" placeholder="Cole seu link aqui" required>
+        <input type="text" id="link_video" name="link_video" class="link" placeholder="Cole seu link aqui" required>
         <button type="submit" class="btn" >Enviar</button>
         </form>
         </div>
+
     <div class="caixa-resposta">
-        <h2>Titulo do video</h2>
-        <p id="respostaVideo">
-            {% if resposta %}
-                {{ resposta }}
-            {% else %}
-                A transcrição ou resumo do vídeo será exibido aqui.
-            {% endif %}
-        </p>
+        {% if titulo_video %}
+            <h2>{{ titulo_video }}</h2>
+        {% else %}
+            <h2>Título do vídeo aparecerá aqui</h2>
+        {% endif %}
+    <p id="respostaVideo">
+        {% if resposta %}
+            {{ resposta }}
+        {% else %}
+            A transcrição ou resumo do vídeo será exibida aqui.
+        {% endif %}
+    </p>
     </div>
 
 
