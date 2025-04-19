@@ -67,7 +67,6 @@ Python 3.8+
 FFmpeg instalado e configurado
 
 📸 Demonstração 
- ![img.png](img.png)
 
 📬 Contato
 Feito com 💙 por Luan Bispo.
