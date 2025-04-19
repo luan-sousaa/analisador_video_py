@@ -9,7 +9,7 @@ Utilizar o modelo Whisper para gerar uma transcrição automática.
 
 Ideal para quem quer obter rapidamente o conteúdo falado de vídeos!
 
-🚀 Funcionalidades
+  Funcionalidades
 🔗 Recebe um link de vídeo do YouTube via formulário.
 
 🎵 Faz download apenas do áudio.
@@ -29,29 +29,20 @@ FFmpeg (dependência para Whisper)
 
 🖥️ Como rodar o projeto localmente
 1. Clone o repositório
-bash
-Copiar
-Editar
+
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 2. Crie um ambiente virtual (recomendado)
-bash
-Copiar
-Editar
+
 python -m venv venv
 source venv/bin/activate    # Linux/Mac
 venv\Scripts\activate       # Windows
 3. Instale as dependências
-bash
-Copiar
-Editar
+
 pip install -r requirements.txt
 Importante: você precisa ter o FFmpeg instalado no seu computador para o Whisper funcionar corretamente.
 Para instalar no MacOS:
 
-bash
-Copiar
-Editar
 brew install ffmpeg
 Para instalar no Ubuntu:
 
