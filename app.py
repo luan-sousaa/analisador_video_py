@@ -6,6 +6,13 @@ import openai
 import ffmpeg
 import os
 import re
+from flask import Flask, render_template, request
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+from flask import request, send_file
+from fpdf import FPDF
+import tempfile
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -54,7 +61,61 @@ def analisar_video(link_video):
 
 
 #resumo com IA
+# Carregar API Key do .env
+#load_dotenv()
+#API_KEY = os.getenv("GEMINI_API_KEY")
 
+genai.configure(api_key="")
+model = genai.GenerativeModel('gemini-1.5-flash')
 
+@app.route("/resumir", methods=["POST"])
+def resumir():
+    try:
+        transcricao = request.form.get("transcricao")
+
+        if not transcricao:
+            return render_template("index.html", resposta="Erro: nenhuma transcrição foi recebida.")
+
+        prompt = f"""
+        Resuma a seguinte transcrição de um vídeo do YouTube de forma concisa, focando nos pontos principais e benefícios. O resumo deve ter no máximo 3 parágrafos.
+
+        --- Transcrição do Vídeo ---
+        {transcricao}
+        """
+
+        response = model.generate_content(prompt)
+        resumo = response.text if response.text else "Erro ao gerar resumo."
+
+        return render_template("index.html", titulo_video="Resumo IA", resposta=resumo)
+
+    except Exception as e:
+        return render_template("index.html", resposta=f"Erro ao gerar resumo: {e}")
+
+#gerar pdf
+@app.route("/gerar_pdf", methods=["POST"])
+def gerar_pdf():
+    texto = request.form.get("transcricao")
+
+    if not texto:
+        return "Nenhum conteúdo encontrado para gerar o PDF", 400
+
+    # Cria o PDF
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.set_auto_page_break(auto=True, margin=15)
+
+    # Divide o texto em linhas para não estourar no PDF
+    linhas = texto.split('\n')
+    for linha in linhas:
+        pdf.multi_cell(0, 10, linha)
+
+    # Salva em arquivo temporário
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        caminho_pdf = tmp.name
+        pdf.output(caminho_pdf)
+
+    # Retorna o PDF para download
+    return send_file(caminho_pdf, as_attachment=True, download_name="transcricao.pdf")
 if __name__ == "__main__":
     app.run(debug=True)

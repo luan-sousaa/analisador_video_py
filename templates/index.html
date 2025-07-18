@@ -6,21 +6,30 @@
     <meta charset="UTF-8">
     <title>Luanalyzer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <header>
         <h1>Bem-Vindo Ao LuAnalyzer</h1>
     </header>
 
-        <!-- envio do formulario -->
-        <div class="input">
-        <form action="/" method="post">
+       <!-- envio do formulario -->
+    <div class="input">
+      <form action="/" method="post">
         <input type="text" id="link_video" name="link_video" class="link" placeholder="Cole seu link aqui" required>
-        <button type="submit" class="btn" >Enviar</button>
-        </form>
-        </div>
-    <button type="submit" class="resume" >Resumo IA</button>
+          <button type="submit" class="btn">Enviar</button>
+      </form>
+    </div>
 
+    <form action="/resumir" method="post" onclick="showCelebration()">
+    <input type="hidden" name="transcricao" value="{{ resposta }}">
+    <button type="submit" class="resume">Resumo IA</button>
+    </form>
+
+    <form action="/gerar_pdf" method="post" onclick="soltarConfete()">
+    <input type="hidden" name="transcricao" value="{{ resposta }}">
+    <button type="submit" class="pdf">Gerar PDF</button>
+    </form>
 
     <div class="caixa-resposta">
         {% if titulo_video %}
@@ -40,3 +49,41 @@
 
     </body>
 </html>
+<script>
+function soltarConfete() {
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+}
+</script>
+
+
+<script>
+function showCelebration() {
+  var end = Date.now() + (10 * 1000); // 10 segundos
+  var colors = ['#bb0000', '#ffffff']; // Vermelho e branco
+
+  (function frame() {
+    confetti({
+      particleCount: 2,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: colors
+    });
+    confetti({
+      particleCount: 2,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: colors
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  }());
+}
+</script>

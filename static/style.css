@@ -122,6 +122,18 @@ body::before {
   animation: gradient-move 5s linear infinite; /* Continua a mesma animação ou defina uma diferente aqui */
 }
 
+.pdf{
+    background-color: rgba(255,3,0,0.78);
+    border-radius: 30px;
+  padding: 8px 16px;
+  color: #E6E6FA;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+    display: block;
+  margin: 20px auto;
+  max-width: 300px;
+}
 
 /* Definição da animação (pode ser a mesma para hover e normal se o objetivo é só mudar a cor) */
 @keyframes gradient-move {
