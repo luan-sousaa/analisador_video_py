@@ -1,94 +1,100 @@
 # LuAnalyzer
 
-**LuAnalyzer** é uma aplicação web desenvolvida com **Flask** que permite extrair e processar automaticamente o conteúdo falado de vídeos do YouTube, oferecendo funcionalidades como transcrição, geração de resumo com inteligência artificial e exportação para PDF.
+## Visão Geral
 
-Ideal para quem precisa obter e manipular rapidamente a informação presente em vídeos — seja para estudos, relatórios, acessibilidade ou organização de conteúdo.
+O **LuAnalyzer** é uma aplicação web desenvolvida em Python com o framework Flask, projetada para extrair, transcrever e resumir o conteúdo de vídeos da plataforma YouTube.
 
----
-
-## 🔧 Funcionalidades
-
-- Recebe um link de vídeo do YouTube via formulário.
-- Faz download apenas do áudio do vídeo.
-- Transcreve o áudio utilizando o modelo **Whisper AI**.
-- Exibe o título do vídeo e a transcrição diretamente na interface web.
-- Permite gerar um **PDF da transcrição** automaticamente.
-- Gera um **resumo automático da transcrição** utilizando o modelo **Gemini Pro** da Google (via API).
-- Efeito visual com confetes ao enviar o link do vídeo (opcional, configurado no frontend).
+A ferramenta é voltada para usuários que necessitam processar informações de vídeos de forma eficiente, como estudantes, pesquisadores e criadores de conteúdo, facilitando tarefas de estudo, elaboração de relatórios e acessibilidade.
 
 ---
 
-## 💻 Tecnologias Utilizadas
+## Recursos Principais
 
-- [Flask](https://flask.palletsprojects.com/) – Framework web em Python
-- [Pytubefix](https://pytube.io/) – Para download de vídeos do YouTube
-- [Whisper](https://github.com/openai/whisper) – Modelo de transcrição automática
-- [FFmpeg](https://ffmpeg.org/) – Necessário para processar áudio
-- [FPDF](https://pyfpdf.github.io/) – Para gerar arquivos PDF
-- [Google Generative AI (Gemini)](https://ai.google.dev/) – Para geração de resumos com IA
+-   **Entrada de Dados via URL:** Recebe um link de vídeo do YouTube através de um formulário na interface web.
+-   **Extração de Áudio:** Realiza o download exclusivo do áudio do vídeo para otimizar o processamento.
+-   **Transcrição Automática:** Utiliza o modelo **Whisper AI** da OpenAI para converter o áudio em texto.
+-   **Geração de Resumos:** Emprega o modelo **gemini-1.5-flash** da Google para criar um resumo automático e coeso da transcrição.
+-   **Visualização e Exportação:** Exibe o título do vídeo e a transcrição completa na interface e permite a exportação do conteúdo para um arquivo PDF.
 
 ---
 
-## Como Executar o Projeto Localmente
+## Pilha Tecnológica
 
-### 1. Clone o repositório
+-   **Framework Backend:** [Flask](https://flask.palletsprojects.com/)
+-   **Processamento de Vídeo:** [Pytubefix](https://github.com/pytubefix/pytubefix)
+-   **Modelo de Transcrição:** [OpenAI Whisper](https://github.com/openai/whisper)
+-   **Modelo de Linguagem (LLM):** [Google Generative AI (Gemini)](https.ai.google.dev/)
+-   **Geração de Documentos:** [FPDF2](https://pyfpdf.github.io/fpdf2/)
+-   **Dependência de Mídia:** [FFmpeg](https://ffmpeg.org/)
 
-```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
-'''
-2. Crie um ambiente virtual (recomendado)
-bash
-Copiar
-Editar
-python -m venv venv
+---
 
-Ative o ambiente virtual:
+## Guia de Instalação
 
-# Linux / macOS
-source venv/bin/activate
+Para executar este projeto localmente, siga os passos detalhados abaixo.
 
-# Windows
-venv\Scripts\activate
-3. Instale as dependências
-bash
-Copiar
-Editar
-pip install -r requirements.txt
-⚠️ É necessário ter o FFmpeg instalado para que o Whisper funcione corretamente.
+### Pré-requisitos
 
-Instalação do FFmpeg:
-macOS (via Homebrew):
+Certifique-se de que os seguintes componentes estão instalados e configurados em seu sistema:
 
-bash
-Copiar
-Editar
-brew install ffmpeg
-Ubuntu:
+-   **Python 3.8** ou superior.
+-   **FFmpeg:** Dependência fundamental para o processamento de áudio.
+    -   **macOS (via Homebrew):**
+        ```bash
+        brew install ffmpeg
+        ```
+    -   **Ubuntu/Debian:**
+        ```bash
+        sudo apt update && sudo apt install ffmpeg
+        ```
+    -   **Windows:**
+        Realize o download a partir do [site oficial](https://ffmpeg.org/download.html) e adicione o diretório `bin` às variáveis de ambiente do sistema.
 
-bash
-Copiar
-Editar
-sudo apt update
-sudo apt install ffmpeg
-Windows:
-Baixe e configure o FFmpeg através do site oficial: https://ffmpeg.org/download.html
+### Configuração e Execução
 
-4. Configure a variável de ambiente da API Gemini
-Crie um arquivo .env com o seguinte conteúdo:
+1.  **Clone o Repositório**
+    ```bash
+    git clone [https://github.com/](https://github.com/)<seu-usuario>/<seu-repositorio>.git
+    cd <seu-repositorio>
+    ```
+    *Lembre-se de substituir `<seu-usuario>` e `<seu-repositorio>` pelos seus dados.*
 
-ini
-Copiar
-Editar
-GEMINI_API_KEY=sua_chave_aqui
-5. Execute a aplicação
-bash
-Copiar
-Editar
-python app.py
-Acesse a aplicação no navegador:
+2.  **Crie e Ative um Ambiente Virtual**
+    É altamente recomendado utilizar um ambiente virtual para isolar as dependências do projeto.
+    ```bash
+    python -m venv venv
+    ```
+    Ative o ambiente de acordo com o seu sistema operacional:
+    ```bash
+    # Para Windows
+    .\venv\Scripts\activate
 
-cpp
-Copiar
-Editar
-http://127.0.0.1:5000
+    # Para macOS e Linux
+    source venv/bin/activate
+    ```
+
+3.  **Instale as Dependências**
+    Instale todos os pacotes Python necessários a partir do arquivo `requirements.txt`.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configure as Variáveis de Ambiente**
+    Crie um arquivo `.env` na raiz do projeto e adicione sua chave de API do Google Gemini ou coloque diretamente a chave api no seu codigo.
+    ```ini
+    GEMINI_API_KEY="SUA_CHAVE_DE_API_AQUI"
+    ```
+
+5.  **Execute a Aplicação**
+    Inicie o servidor de desenvolvimento do Flask.
+    ```bash
+    flask run
+    ```
+    A aplicação estará disponível em seu navegador no seguinte endereço:
+    `http://127.0.0.1:5000`
+
+---
+
+## Contribuições
+
+Contribuições são bem-vindas. Para sugestões, melhorias ou correções de bugs, por favor, abra uma *issue* ou submeta um *pull request* neste repositório.
