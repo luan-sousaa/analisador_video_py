@@ -1,25 +1,59 @@
 header{
     h1{
-        font-family: "Splash", cursive;
-        font-size: 45px;
-        color: black;
+        font-family: "Climate Crisis", sans-serif;
+        font-size: 50px;
+        color: #E6E6FA;
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 }
-.splash-regular {
-  font-family: "Splash", cursive;
+.climate-crisis {
+  font-family: "Climate Crisis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "YEAR" 1979;
+}
+
+.tinos-regular {
+  font-family: "Tinos", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-body{
-    background-color: lightgray;
+body {
+    position: relative; /* Essencial: define o body como um contêiner de posicionamento */
+    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+    /* Quaisquer outros estilos para o conteúdo do body (cor do texto, etc.) */
+}
+
+body::before {
+    content: ""; /* Necessário para pseudo-elementos */
+    background-image: url("../static/images/fundo.png"); /* Seu caminho para a imagem */
+    background-position: center; /* Centraliza a imagem */
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    background-attachment: fixed; /* Opcional: fixa a imagem ao rolar */
+
+    /* Propriedades para cobrir e posicionar o pseudo-elemento */
+    position: fixed; /* Ou 'absolute' se preferir que ele role com o conteúdo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Controla a opacidade da imagem */
+    opacity: 0.94; /* Ajuste este valor (de 0 a 1) para a transparência desejada */
+
+    z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo do body */
 }
 
 .input {
   display: flex;
+    flex-direction: column;
   align-items: center;
   background-color: #3b3f51;
   border-radius: 30px;
@@ -29,18 +63,20 @@ body{
 }
 
 .link {
+    font-family: "Tinos", serif;
   flex: 1;
   background: transparent;
   border: none;
   outline: none;
-  color: #ffffff;
+  color: gray;
   font-size: 16px;
 }
 
 .btn {
+    font-family: "Tinos", serif;
   background: none;
   border: none;
-  color: #ffffff;
+  color: #E6E6FA;
   font-size: 16px;
   cursor: pointer;
   padding: 8px 12px;
@@ -53,28 +89,73 @@ body{
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Remova ou ajuste as propriedades de Flexbox que não fazem sentido para um botão único */
+.resume {
+  /* Seus estilos existentes para o botão */
+    font-family: "Rubik 80s Fade", system-ui;
+  background: linear-gradient(to right, cornflowerblue, #4a4e69, orange); /* Gradiente de 3 cores para loop suave */
+  border-radius: 30px;
+  padding: 8px 16px;
+  color: #E6E6FA;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease; /* Boa prática para transições suaves, mesmo que o foco seja a animação */
 
+  /* Propriedades para a animação contínua */
+  background-size: 200% auto; /* Faz o gradiente ser o dobro da largura do botão */
+  animation: gradient-move 5s linear infinite; /* Aplica a animação para sempre */
+
+  /* Para centralizar o botão, se ainda não estiver: */
+  display: block;
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+.resume:hover {
+  /* No hover, você pode mudar o gradiente ou a velocidade da animação,
+     ou simplesmente deixar o fundo.png-size e animation intactos se quiser que
+     a animação continue a mesma, talvez só mudando a cor. */
+  background: linear-gradient(to right, orange, #4a4e69, cornflowerblue); /* Exemplo: Mudar a cor no hover */
+  /* Se você quiser que a animação PARE no hover, remova as linhas abaixo */
+  background-size: 200% auto; /* Mantenha o tamanho para o gradiente, se for diferente */
+  animation: gradient-move 5s linear infinite; /* Continua a mesma animação ou defina uma diferente aqui */
+}
+
+
+/* Definição da animação (pode ser a mesma para hover e normal se o objetivo é só mudar a cor) */
+@keyframes gradient-move {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+
+/* Mantenha o restante do seu CSS inalterado */
 .caixa-resposta {
-    background-color: whitesmoke;
+    background-color: #E6E6FA;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
     max-width: 600px;
     margin: 40px auto;
     transition: box-shadow 0.3s ease;
-
     min-height: 300px; /* altura mínima */
     max-height: 500px; /* altura máxima */
     overflow-y: auto;
 }
 
 .caixa-resposta h2 {
+    font-family: "Tinos", serif;
     font-size: 24px;
     margin-bottom: 10px;
     color: #222;
 }
 
 .caixa-resposta p {
+    font-family: "Tinos", serif;
     font-size: 16px;
     color: grey;
 }

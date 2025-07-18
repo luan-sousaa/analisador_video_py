@@ -53,5 +53,8 @@ def analisar_video(link_video):
     return titulo, resultado["text"]
 
 
+#resumo com IA
+
+
 if __name__ == "__main__":
     app.run(debug=True)
