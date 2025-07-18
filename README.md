@@ -1,81 +1,94 @@
-LuAnalyzer 🎥✨
-LuAnalyzer é uma aplicação web simples feita com Flask, que permite:
+# LuAnalyzer
 
-Receber o link de um vídeo do YouTube.
+**LuAnalyzer** é uma aplicação web desenvolvida com **Flask** que permite extrair e processar automaticamente o conteúdo falado de vídeos do YouTube, oferecendo funcionalidades como transcrição, geração de resumo com inteligência artificial e exportação para PDF.
 
-Baixar o áudio do vídeo.
+Ideal para quem precisa obter e manipular rapidamente a informação presente em vídeos — seja para estudos, relatórios, acessibilidade ou organização de conteúdo.
 
-Utilizar o modelo Whisper para gerar uma transcrição automática.
+---
 
-Ideal para quem quer obter rapidamente o conteúdo falado de vídeos!
+## 🔧 Funcionalidades
 
-  Funcionalidades
-🔗 Recebe um link de vídeo do YouTube via formulário.
+- Recebe um link de vídeo do YouTube via formulário.
+- Faz download apenas do áudio do vídeo.
+- Transcreve o áudio utilizando o modelo **Whisper AI**.
+- Exibe o título do vídeo e a transcrição diretamente na interface web.
+- Permite gerar um **PDF da transcrição** automaticamente.
+- Gera um **resumo automático da transcrição** utilizando o modelo **Gemini Pro** da Google (via API).
+- Efeito visual com confetes ao enviar o link do vídeo (opcional, configurado no frontend).
 
-🎵 Faz download apenas do áudio.
+---
 
-🧠 Transcreve o áudio usando Whisper AI.
+## 💻 Tecnologias Utilizadas
 
-📝 Exibe o título do vídeo e a transcrição na tela.
+- [Flask](https://flask.palletsprojects.com/) – Framework web em Python
+- [Pytubefix](https://pytube.io/) – Para download de vídeos do YouTube
+- [Whisper](https://github.com/openai/whisper) – Modelo de transcrição automática
+- [FFmpeg](https://ffmpeg.org/) – Necessário para processar áudio
+- [FPDF](https://pyfpdf.github.io/) – Para gerar arquivos PDF
+- [Google Generative AI (Gemini)](https://ai.google.dev/) – Para geração de resumos com IA
 
-🛠️ Tecnologias usadas
-Flask
+---
 
-Pytubefix (para download dos vídeos)
+## Como Executar o Projeto Localmente
 
-Whisper (para transcrição)
+### 1. Clone o repositório
 
-FFmpeg (dependência para Whisper)
-
-🖥️ Como rodar o projeto localmente
-1. Clone o repositório
-
+```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
-2. Crie um ambiente virtual (recomendado)
 
+### 2. Crie um ambiente virtual (recomendado)
+```bash
+Copiar
+Editar
 python -m venv venv
-source venv/bin/activate    # Linux/Mac
-venv\Scripts\activate       # Windows
+
+Ative o ambiente virtual:
+
+# Linux / macOS
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
 3. Instale as dependências
-
+bash
+Copiar
+Editar
 pip install -r requirements.txt
-Importante: você precisa ter o FFmpeg instalado no seu computador para o Whisper funcionar corretamente.
-Para instalar no MacOS:
+⚠️ É necessário ter o FFmpeg instalado para que o Whisper funcione corretamente.
 
+Instalação do FFmpeg:
+macOS (via Homebrew):
+
+bash
+Copiar
+Editar
 brew install ffmpeg
-Para instalar no Ubuntu:
+Ubuntu:
 
 bash
 Copiar
 Editar
 sudo apt update
 sudo apt install ffmpeg
-Para Windows: Baixar FFmpeg
+Windows:
+Baixe e configure o FFmpeg através do site oficial: https://ffmpeg.org/download.html
 
-4. Execute a aplicação
+4. Configure a variável de ambiente da API Gemini
+Crie um arquivo .env com o seguinte conteúdo:
+
+ini
+Copiar
+Editar
+GEMINI_API_KEY=sua_chave_aqui
+5. Execute a aplicação
 bash
 Copiar
 Editar
 python app.py
-Acesse no navegador:
+Acesse a aplicação no navegador:
+
+cpp
+Copiar
+Editar
 http://127.0.0.1:5000
-
-📋 Requisitos
-Python 3.8+
-
-FFmpeg instalado e configurado
-
-📸 Demonstração 
-
-📬 Contato
-Feito com 💙 por Luan Bispo.
-
-GitHub: luan-sousaa
-
-Email: luanbispo.sousa263@gmail.com
-
-📢 Observação
-O Whisper é uma tecnologia pesada para alguns dispositivos!
-Rodar a transcrição pode demorar dependendo do tamanho do áudio e da capacidade da sua máquina.
-
