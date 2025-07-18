@@ -116,6 +116,6 @@ def gerar_pdf():
         pdf.output(caminho_pdf)
 
     # Retorna o PDF para download
-    return send_file(caminho_pdf, as_attachment=True, download_name="transcricao.pdf")
+    return send_file(caminho_pdf, as_attachment=True, download_name="Transcricao.pdf")
 if __name__ == "__main__":
     app.run(debug=True)
