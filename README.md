@@ -37,8 +37,8 @@ Ideal para quem precisa obter e manipular rapidamente a informação presente em
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 
-### 2. Crie um ambiente virtual (recomendado)
-```bash
+2. Crie um ambiente virtual (recomendado)
+bash
 Copiar
 Editar
 python -m venv venv
